@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		AD85988E2CC36BAE008A2789 /* MenuBarExtraAccess in Frameworks */ = {isa = PBXBuildFile; productRef = AD85988D2CC36BAE008A2789 /* MenuBarExtraAccess */; };
+		AD8598912CC36BC1008A2789 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = AD8598902CC36BC1008A2789 /* Valet */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		AD143A852CAAE0C900D0BEBA /* PagerCall.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PagerCall.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +28,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD85988E2CC36BAE008A2789 /* MenuBarExtraAccess in Frameworks */,
+				AD8598912CC36BC1008A2789 /* Valet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +73,8 @@
 			);
 			name = PagerCall;
 			packageProductDependencies = (
+				AD85988D2CC36BAE008A2789 /* MenuBarExtraAccess */,
+				AD8598902CC36BC1008A2789 /* Valet */,
 			);
 			productName = PagerCall;
 			productReference = AD143A852CAAE0C900D0BEBA /* PagerCall.app */;
@@ -95,6 +104,10 @@
 			);
 			mainGroup = AD143A7C2CAAE0C900D0BEBA;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				AD85988C2CC36BAE008A2789 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */,
+				AD85988F2CC36BC1008A2789 /* XCRemoteSwiftPackageReference "Valet" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AD143A862CAAE0C900D0BEBA /* Products */;
 			projectDirPath = "";
@@ -348,6 +361,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		AD85988C2CC36BAE008A2789 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/orchetect/MenuBarExtraAccess";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.3;
+			};
+		};
+		AD85988F2CC36BC1008A2789 /* XCRemoteSwiftPackageReference "Valet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/square/Valet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AD85988D2CC36BAE008A2789 /* MenuBarExtraAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD85988C2CC36BAE008A2789 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */;
+			productName = MenuBarExtraAccess;
+		};
+		AD8598902CC36BC1008A2789 /* Valet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD85988F2CC36BC1008A2789 /* XCRemoteSwiftPackageReference "Valet" */;
+			productName = Valet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AD143A7D2CAAE0C900D0BEBA /* Project object */;
 }
