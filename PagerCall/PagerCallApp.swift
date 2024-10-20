@@ -2,6 +2,8 @@ import SwiftUI
 
 @main
 struct PagerCallApp: App {
+    @State private var apiKey = "" // TODO:
+
     var body: some Scene {
         MenuBarExtra {
             RightClickMenu()
@@ -9,7 +11,7 @@ struct PagerCallApp: App {
             Image(systemName: "leaf")
         }
         Settings {
-            SettingView()
+            SettingView(apiKey: $apiKey)
         }
     }
 }
