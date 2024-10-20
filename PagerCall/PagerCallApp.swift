@@ -8,5 +8,8 @@ struct PagerCallApp: App {
         } label: {
             Image(systemName: "leaf")
         }
+        Settings {
+            SettingView()
+        }
     }
 }

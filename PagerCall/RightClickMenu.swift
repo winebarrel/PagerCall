@@ -9,6 +9,10 @@ struct RightClickMenu: View {
                 NSWorkspace.shared.open(url)
             }
         }
+        // TODO: avtivate
+        SettingsLink {
+            Text("Settings")
+        }
         Divider()
         Button("Quit") {
             NSApplication.shared.terminate(self)
