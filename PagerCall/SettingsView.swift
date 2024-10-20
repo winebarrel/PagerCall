@@ -30,7 +30,7 @@ struct SettingView: View {
                             try SMAppService.mainApp.unregister()
                         }
                     } catch {
-                        Logger.shared.debug("failed to update 'Launch at login': \(error)")
+                        Logger.shared.error("failed to update 'Launch at login': \(error)")
                     }
                 }
         }
