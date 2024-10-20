@@ -2,7 +2,7 @@ import SwiftUI
 
 @main
 struct PagerCallApp: App {
-    @State private var apiKey = "" // TODO:
+    @State private var apiKey = Vault.apiKey
 
     var body: some Scene {
         MenuBarExtra {
