@@ -12,7 +12,6 @@ struct SettingView: View {
             SecureField(text: $apiKey) {
                 Link("API Key", destination: URL(string: "https://support.pagerduty.com/main/docs/api-access-keys")!)
             }
-            // TODO:
             TextField("Interval (sec)", value: $interval, format: .number.grouping(.never))
                 .onChange(of: interval) {
                     if interval < 1 {
@@ -31,7 +30,7 @@ struct SettingView: View {
                             try SMAppService.mainApp.unregister()
                         }
                     } catch {
-                        // TODO: logging
+                        Logger.shared.debug("failed to update 'Launch at login': \(error)")
                     }
                 }
         }
