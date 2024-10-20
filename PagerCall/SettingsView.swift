@@ -33,6 +33,13 @@ struct SettingView: View {
                         Logger.shared.error("failed to update 'Launch at login': \(error)")
                     }
                 }
+
+            // swiftlint:disable force_cast
+            let appVer = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
+            let buildVer = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
+            // swiftlint:enable force_cast
+            Link("Ver. \(appVer).\(buildVer)", destination: URL(string: "https://github.com/winebarrel/PagerCall")!)
+                .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(20)
         .frame(width: 400)
