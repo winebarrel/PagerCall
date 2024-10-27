@@ -41,7 +41,7 @@ class PagerDuty: ObservableObject {
             let userID = try await api.getUserID()
             let onCallNow = try await api.isOnCall(userID)
             let currIncidents = try await api.getIncidents(userID)
-            let hasIncidents = currIncidents.count > 0
+            let hasIncidents = !currIncidents.isEmpty
 
             await MainActor.run {
                 self.incidents.replaceAll(currIncidents)
@@ -58,7 +58,7 @@ class PagerDuty: ObservableObject {
 
             let newIncidents = currIncidents - incidents
 
-            if newIncidents.count > 0 {
+            if !newIncidents.isEmpty {
                 notify(newIncidents)
             }
         } catch {
