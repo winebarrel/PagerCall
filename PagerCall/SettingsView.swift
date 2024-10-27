@@ -2,7 +2,7 @@ import ServiceManagement
 import SwiftUI
 
 struct SettingView: View {
-    @Binding var apiKey: String
+    @State var apiKey: String = Vault.apiKey
     @AppStorage("interval") private var interval: TimeInterval = Constants.defaultInterval
     @AppStorage("userID") private var userID = ""
     @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled

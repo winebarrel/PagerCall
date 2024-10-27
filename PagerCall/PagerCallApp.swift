@@ -5,7 +5,7 @@ import SwiftUI
 struct PagerCallApp: App {
     @State private var initialized = false
     @State private var isMenuPresented = false
-    @State private var apiKey = Vault.apiKey
+    @StateObject private var pagerDuty = PagerDuty()
 
     private var popover: NSPopover = {
         let pop = NSPopover()
@@ -16,7 +16,8 @@ struct PagerCallApp: App {
     }()
 
     private func initialize() {
-        // TODO:
+        // TODO: notification
+
         popover.contentViewController = NSHostingController(rootView: ContentView())
     }
 
@@ -48,7 +49,7 @@ struct PagerCallApp: App {
             }
         }
         Settings {
-            SettingView(apiKey: $apiKey)
+            SettingView()
         }
     }
 }
