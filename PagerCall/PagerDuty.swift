@@ -34,28 +34,45 @@ class PagerDuty: ObservableObject {
     @Published var incidents: Incidents = []
     @Published var status: Status = .notOnCallWithoutIncident
     @Published var updatedAt: Date?
+    @Published var error: Error?
 
-    func update() async throws {
-        let userID = try await api.getUserID()
-        let onCallNow = try await api.isOnCall(userID)
-        let currIncidents = try await api.getIncidents(userID)
-        let hasIncidents = currIncidents.count > 0
-
-        incidents.replaceAll(currIncidents)
-
-        if onCallNow {
-            status = hasIncidents ?.onCallWithIncident : .onCallWithoutIncident
-        } else {
-            status = hasIncidents ? .notOnCallWithIncident : .notOnCallWithoutIncident
+    func update() async {
+        DispatchQueue.main.async {
+            self.error = nil
         }
 
-        let newIncidents = currIncidents - incidents
+        do {
+            let userID = try await api.getUserID()
+            let onCallNow = try await api.isOnCall(userID)
+            let currIncidents = try await api.getIncidents(userID)
+            let hasIncidents = currIncidents.count > 0
 
-        if newIncidents.count > 0 {
-            notify(newIncidents)
+            DispatchQueue.main.async {
+                self.incidents.replaceAll(currIncidents)
+            }
+
+            DispatchQueue.main.async {
+                self.status = if onCallNow {
+                    hasIncidents ? Status.onCallWithIncident : Status.onCallWithoutIncident
+                } else {
+                    hasIncidents ? Status.notOnCallWithIncident : Status.notOnCallWithoutIncident
+                }
+            }
+
+            let newIncidents = currIncidents - incidents
+
+            if newIncidents.count > 0 {
+                notify(newIncidents)
+            }
+
+            DispatchQueue.main.async {
+                self.updatedAt = Date()
+            }
+        } catch {
+            DispatchQueue.main.async {
+                self.error = error
+            }
         }
-
-        updatedAt = Date()
     }
 
     private func notify(_ newIncidents: Incidents) {

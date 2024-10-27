@@ -23,7 +23,13 @@ struct ContentView: View {
             }
             .padding(.top, 5)
             HStack {
-                Image(systemName: "clock.arrow.circlepath")
+                Button {
+                    Task.detached {
+                        await pagerDuty.update()
+                    }
+                } label: {
+                    Image(systemName: "arrow.triangle.2.circlepath")
+                }
 
                 let label = if let updatedAt = pagerDuty.updatedAt {
                     dateFmt.string(from: updatedAt)
