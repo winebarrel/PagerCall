@@ -3,7 +3,7 @@ import SwiftUI
 
 struct SettingView: View {
     @State var apiKey: String = Vault.apiKey
-    @AppStorage("interval") private var interval: TimeInterval = Constants.defaultInterval
+    @AppStorage("interval") private var interval = Constants.defaultInterval
     @AppStorage("userID") private var userID = ""
     @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
 
@@ -46,5 +46,13 @@ struct SettingView: View {
         }
         .padding(20)
         .frame(width: 400)
+    }
+
+    func onClosed(_ action: @escaping () -> Void) -> some View {
+        onReceive(NotificationCenter.default.publisher(for: NSWindow.willCloseNotification)) { notification in
+            if let window = notification.object as? NSWindow, window.title == "PagerCall Settings" {
+                action()
+            }
+        }
     }
 }

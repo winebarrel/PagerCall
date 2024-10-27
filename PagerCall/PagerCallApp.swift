@@ -5,6 +5,8 @@ import SwiftUI
 struct PagerCallApp: App {
     @State private var initialized = false
     @State private var isMenuPresented = false
+    @State private var timer: Timer?
+    @AppStorage("interval") private var interval = Constants.defaultInterval
     @StateObject private var pagerDuty = PagerDuty()
 
     private var popover: NSPopover = {
@@ -20,6 +22,18 @@ struct PagerCallApp: App {
 
         let contentView = ContentView(pagerDuty: pagerDuty)
         popover.contentViewController = NSHostingController(rootView: contentView)
+
+        scheduleUpdate()
+    }
+
+    private func scheduleUpdate() {
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
+            Task {
+                await pagerDuty.update()
+            }
+        }
+        timer?.fire()
     }
 
     var body: some Scene {
@@ -51,6 +65,9 @@ struct PagerCallApp: App {
         }
         Settings {
             SettingView()
+                .onClosed {
+                    scheduleUpdate()
+                }
         }
     }
 }
