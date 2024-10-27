@@ -1,5 +1,6 @@
 import MenuBarExtraAccess
 import SwiftUI
+import UserNotifications
 
 @main
 struct PagerCallApp: App {
@@ -8,6 +9,8 @@ struct PagerCallApp: App {
     @State private var timer: Timer?
     @AppStorage("interval") private var interval = Constants.defaultInterval
     @StateObject private var pagerDuty = PagerDuty()
+
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
     private var popover: NSPopover = {
         let pop = NSPopover()
@@ -18,7 +21,7 @@ struct PagerCallApp: App {
     }()
 
     private func initialize() {
-        // TODO: notification
+        Notification.initialize()
 
         let contentView = ContentView(pagerDuty: pagerDuty)
         popover.contentViewController = NSHostingController(rootView: contentView)
