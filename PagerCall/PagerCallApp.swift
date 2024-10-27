@@ -1,3 +1,4 @@
+import AsyncAlgorithms
 import MenuBarExtraAccess
 import SwiftUI
 import UserNotifications
@@ -6,7 +7,8 @@ import UserNotifications
 struct PagerCallApp: App {
     @State private var initialized = false
     @State private var isMenuPresented = false
-    @State private var timer: Timer?
+    @State private var oldTimer: Timer?
+    @State private var timer: Task<Void, Never>?
     @AppStorage("interval") private var interval = Constants.defaultInterval
     @StateObject private var pagerDuty = PagerDuty()
 
@@ -30,15 +32,20 @@ struct PagerCallApp: App {
     }
 
     private func scheduleUpdate() {
-        // TODO: Use async scheduler
-        // cf. https://zenn.dev/treastrain/articles/a78b5f892f4654
-        timer?.invalidate()
-        timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-            Task {
+        timer?.cancel()
+
+        let seq = AsyncTimerSequence(
+            interval: .seconds(interval),
+            clock: .continuous
+        )
+
+        timer = Task {
+            await pagerDuty.update()
+
+            for await _ in seq {
                 await pagerDuty.update()
             }
         }
-        timer?.fire()
     }
 
     var body: some Scene {
