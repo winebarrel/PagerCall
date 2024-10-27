@@ -14,12 +14,6 @@ struct Incident: Codable, Identifiable {
 
 typealias Incidents = [Incident]
 
-extension Incidents {
-    mutating func replaceAll(_ newIncidents: Incidents) {
-        replaceSubrange(0 ..< count, with: newIncidents)
-    }
-}
-
 func - (left: Incidents, right: Incidents) -> Incidents {
     let rightIDs = right.map { $0.id }
     return left.filter { !rightIDs.contains($0.id) }

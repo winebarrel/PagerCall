@@ -26,7 +26,7 @@ class PagerDuty: ObservableObject {
             let newIncidents = currIncidents - incidents
             let hasIncidents = !currIncidents.isEmpty
 
-            incidents.replaceAll(currIncidents)
+            incidents = currIncidents
 
             status = if onCallNow {
                 hasIncidents ? Status.onCallWithIncident : Status.onCallWithoutIncident
