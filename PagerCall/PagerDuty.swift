@@ -8,6 +8,7 @@ enum Status: String {
     case error = "exclamationmark.triangle"
 }
 
+@MainActor
 class PagerDuty: ObservableObject {
     private let endpoint = URL(string: "https://api.pagerduty.com/")!
     private let api = PagerDutyAPI()
@@ -25,26 +26,22 @@ class PagerDuty: ObservableObject {
             let newIncidents = currIncidents - incidents
             let hasIncidents = !currIncidents.isEmpty
 
-            await MainActor.run {
-                self.incidents.replaceAll(currIncidents)
+            incidents.replaceAll(currIncidents)
 
-                self.status = if onCallNow {
-                    hasIncidents ? Status.onCallWithIncident : Status.onCallWithoutIncident
-                } else {
-                    hasIncidents ? Status.notOnCallWithIncident : Status.notOnCallWithoutIncident
-                }
-
-                self.updatedAt = Date()
-                self.error = nil
+            status = if onCallNow {
+                hasIncidents ? Status.onCallWithIncident : Status.onCallWithoutIncident
+            } else {
+                hasIncidents ? Status.notOnCallWithIncident : Status.notOnCallWithoutIncident
             }
+
+            updatedAt = Date()
+            error = nil
 
             if !newIncidents.isEmpty {
                 notify(newIncidents)
             }
         } catch {
-            await MainActor.run {
-                self.error = error
-            }
+            self.error = error
         }
     }
 
