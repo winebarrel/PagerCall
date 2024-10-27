@@ -63,4 +63,4 @@ jobs:
           restore-keys: xcode-cache-deriveddata-${{ github.workflow }}-
       - name: Build and Analyse
         run: |
-          xcodebuild build analyze -scheme PagerCall -destination 'generic/platform=macOS'
+          xcodebuild build analyze -scheme PagerCall -destination 'generic/platform=macOS' -allowProvisioningUpdates

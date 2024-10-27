@@ -11,6 +11,8 @@ struct SettingView: View {
         Form {
             SecureField(text: $apiKey) {
                 Link("API Key", destination: URL(string: "https://support.pagerduty.com/main/docs/api-access-keys")!)
+            }.onChange(of: apiKey) {
+                Vault.apiKey = apiKey
             }
             TextField("Interval (sec)", value: $interval, format: .number.grouping(.never))
                 .onChange(of: interval) {
