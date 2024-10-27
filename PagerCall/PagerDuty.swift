@@ -37,26 +37,23 @@ class PagerDuty: ObservableObject {
     @Published var error: Error?
 
     func update() async {
-        DispatchQueue.main.async {
-            self.error = nil
-        }
-
         do {
             let userID = try await api.getUserID()
             let onCallNow = try await api.isOnCall(userID)
             let currIncidents = try await api.getIncidents(userID)
             let hasIncidents = currIncidents.count > 0
 
-            DispatchQueue.main.async {
+            await MainActor.run {
                 self.incidents.replaceAll(currIncidents)
-            }
 
-            DispatchQueue.main.async {
                 self.status = if onCallNow {
                     hasIncidents ? Status.onCallWithIncident : Status.onCallWithoutIncident
                 } else {
                     hasIncidents ? Status.notOnCallWithIncident : Status.notOnCallWithoutIncident
                 }
+
+                self.updatedAt = Date()
+                self.error = nil
             }
 
             let newIncidents = currIncidents - incidents
@@ -64,12 +61,8 @@ class PagerDuty: ObservableObject {
             if newIncidents.count > 0 {
                 notify(newIncidents)
             }
-
-            DispatchQueue.main.async {
-                self.updatedAt = Date()
-            }
         } catch {
-            DispatchQueue.main.async {
+            await MainActor.run {
                 self.error = error
             }
         }
