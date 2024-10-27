@@ -41,6 +41,8 @@ struct ContentView: View {
                 }
             }
             HStack {
+                // TODO: Add error notification
+
                 Button {
                     Task.detached {
                         await pagerDuty.update()
