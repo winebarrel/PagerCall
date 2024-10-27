@@ -10,7 +10,7 @@ struct SettingView: View {
     var body: some View {
         Form {
             SecureField(text: $apiKey) {
-                Link("API Key", destination: URL(string: "https://support.pagerduty.com/main/docs/api-access-keys")!)
+                Link("User API Key", destination: URL(string: "https://support.pagerduty.com/main/docs/api-access-keys#section-generate-a-user-token-rest-api-key")!)
             }.onChange(of: apiKey) {
                 Vault.apiKey = apiKey
             }
