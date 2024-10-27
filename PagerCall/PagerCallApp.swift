@@ -34,7 +34,7 @@ struct PagerCallApp: App {
         // cf. https://zenn.dev/treastrain/articles/a78b5f892f4654
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
-            Task { @MainActor in
+            Task {
                 await pagerDuty.update()
             }
         }
