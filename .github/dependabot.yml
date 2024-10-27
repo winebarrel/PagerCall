@@ -1,5 +1,6 @@
 version: 2
 updates:
+  # cf. https://github.com/dependabot/dependabot-core/issues/7694
   # - package-ecosystem: "swift"
   #   directory: "/PagerCall.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/"
   #   schedule:
