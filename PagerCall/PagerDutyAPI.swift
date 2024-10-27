@@ -4,7 +4,12 @@ struct Incident: Codable, Identifiable {
     let id: String
     let title: String
     let htmlUrl: String
-    let urgency: String
+    let urgency: Urgency
+
+    enum Urgency: String, Codable {
+        case high
+        case low
+    }
 }
 
 typealias Incidents = [Incident]

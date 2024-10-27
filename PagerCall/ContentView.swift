@@ -26,11 +26,11 @@ struct ContentView: View {
             } else {
                 List(self.pagerDuty.incidents) { incident in
                     Link(destination: URL(string: incident.htmlUrl)!) {
-                        Text(incident.urgency)
+                        Text(incident.urgency.rawValue)
                             .font(.caption)
                             .padding(.horizontal, 3)
                             .foregroundColor(.white)
-                            .background(incident.urgency == "high" ? .urgencyHigh : .gray, in: RoundedRectangle(cornerRadius: 5))
+                            .background(incident.urgency == .high ? .urgencyHigh : .gray, in: RoundedRectangle(cornerRadius: 5))
                         Text(incident.title)
                             .multilineTextAlignment(.leading)
                             .underline(hoverId == incident.id)
