@@ -1,5 +1,25 @@
 import SwiftUI
 
+struct Incident: Codable, Identifiable {
+    let id: String
+    let title: String
+    let htmlUrl: String
+    let urgency: String
+}
+
+typealias Incidents = [Incident]
+
+extension Incidents {
+    mutating func replaceAll(_ newIncidents: Incidents) {
+        replaceSubrange(0 ..< count, with: newIncidents)
+    }
+}
+
+func - (left: Incidents, right: Incidents) -> Incidents {
+    let rightIDs = right.map { $0.id }
+    return left.filter { !rightIDs.contains($0.id) }
+}
+
 struct PagerDutyAPI {
     private let endpoint = URL(string: "https://api.pagerduty.com/")!
 
