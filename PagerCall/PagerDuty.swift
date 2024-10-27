@@ -22,6 +22,7 @@ class PagerDuty: ObservableObject {
             let userID = try await api.getUserID()
             let onCallNow = try await api.isOnCall(userID)
             let currIncidents = try await api.getIncidents(userID)
+            let newIncidents = currIncidents - incidents
             let hasIncidents = !currIncidents.isEmpty
 
             await MainActor.run {
@@ -37,8 +38,6 @@ class PagerDuty: ObservableObject {
                 self.error = nil
             }
 
-            let newIncidents = currIncidents - incidents
-
             if !newIncidents.isEmpty {
                 notify(newIncidents)
             }
@@ -50,6 +49,14 @@ class PagerDuty: ObservableObject {
     }
 
     private func notify(_ newIncidents: Incidents) {
-        // TODO:
+        for inc in newIncidents {
+            Task {
+                await Notification.notify(
+                    id: inc.id,
+                    body: inc.title,
+                    url: inc.htmlUrl
+                )
+            }
+        }
     }
 }
