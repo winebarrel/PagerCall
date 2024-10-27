@@ -14,6 +14,17 @@ struct RightClickMenu: View {
                 }
             }
         }
+        Button("My On-Call Shifts") {
+            Task {
+                do {
+                    let url = try await api.getOnCallShiftsURL()
+                    NSWorkspace.shared.open(url)
+                } catch {
+                    Logger.shared.error("failed to open 'My On-Call Shifts': \(error)")
+                }
+            }
+        }
+        Divider()
         SettingsLink {
             Text("Settings")
         }.preActionButtonStyle {

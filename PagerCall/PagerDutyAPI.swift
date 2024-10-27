@@ -71,6 +71,15 @@ struct PagerDutyAPI {
         return components.url!
     }
 
+    func getOnCallShiftsURL() async throws -> URL {
+        let user = try await getUser()
+        let url = URL(string: user.htmlUrl)!
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+        components.path = "/my-on-call/week"
+
+        return components.url!
+    }
+
     private func get(_ path: String, _ query: [String: String] = [:]) async throws -> Data {
         var url = endpoint.appendingPathComponent(path)
         url.append(queryItems: query.map { key, val in URLQueryItem(name: key, value: val) })
