@@ -59,7 +59,6 @@ struct ContentView: View {
             }
             .padding(.bottom, 5)
         }
-        .background(.background)
     }
 }
 
