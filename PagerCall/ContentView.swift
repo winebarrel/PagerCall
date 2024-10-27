@@ -44,7 +44,7 @@ struct ContentView: View {
                 // TODO: Add error notification
 
                 Button {
-                    Task.detached {
+                    Task {
                         await pagerDuty.update()
                     }
                 } label: {

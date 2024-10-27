@@ -30,6 +30,8 @@ struct PagerCallApp: App {
     }
 
     private func scheduleUpdate() {
+        // TODO: Use async scheduler
+        // cf. https://zenn.dev/treastrain/articles/a78b5f892f4654
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: interval, repeats: true) { _ in
             Task {
