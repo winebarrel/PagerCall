@@ -9,9 +9,10 @@ struct RightClickMenu: View {
                 NSWorkspace.shared.open(url)
             }
         }
-        // TODO: avtivate
         SettingsLink {
             Text("Settings")
+        }.preActionButtonStyle {
+            NSApp.activate(ignoringOtherApps: true)
         }
         Divider()
         Button("Quit") {
