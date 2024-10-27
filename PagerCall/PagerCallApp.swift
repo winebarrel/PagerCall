@@ -18,7 +18,8 @@ struct PagerCallApp: App {
     private func initialize() {
         // TODO: notification
 
-        popover.contentViewController = NSHostingController(rootView: ContentView())
+        let contentView = ContentView(pagerDuty: pagerDuty)
+        popover.contentViewController = NSHostingController(rootView: contentView)
     }
 
     var body: some Scene {
