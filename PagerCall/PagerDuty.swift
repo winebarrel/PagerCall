@@ -53,9 +53,9 @@ class PagerDuty: ObservableObject {
 
             DispatchQueue.main.async {
                 self.status = if onCallNow {
-                    hasIncidents ?.onCallWithIncident : .onCallWithoutIncident
+                    hasIncidents ? Status.onCallWithIncident : Status.onCallWithoutIncident
                 } else {
-                    hasIncidents ? .notOnCallWithIncident : .notOnCallWithoutIncident
+                    hasIncidents ? Status.notOnCallWithIncident : Status.notOnCallWithoutIncident
                 }
             }
 
