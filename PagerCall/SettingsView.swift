@@ -4,8 +4,8 @@ import SwiftUI
 struct SettingView: View {
     @State var apiKey: String = Vault.apiKey
     @AppStorage("subdomain") private var subdomain = ""
-    @AppStorage("interval") private var interval = Constants.defaultInterval
     @AppStorage("userID") private var userID = ""
+    @AppStorage("interval") private var interval = Constants.defaultInterval
     @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
 
     var body: some View {
