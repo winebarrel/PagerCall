@@ -13,7 +13,17 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            if self.pagerDuty.incidents.isEmpty {
+            if let err = self.pagerDuty.error as? PagerDutyError {
+                List {
+                    HStack {
+                        Spacer()
+                        Image(systemName: "exclamationmark.triangle")
+                            .imageScale(.large)
+                        Text(err.localizedDescription)
+                        Spacer()
+                    }
+                }
+            } else if self.pagerDuty.incidents.isEmpty {
                 List {
                     HStack {
                         Spacer()
@@ -41,8 +51,6 @@ struct ContentView: View {
                 }
             }
             HStack {
-                // TODO: Add error notification
-
                 Button {
                     Task {
                         await pagerDuty.update()
