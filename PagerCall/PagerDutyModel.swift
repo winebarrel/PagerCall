@@ -20,9 +20,8 @@ class PagerDuty: ObservableObject {
 
     func update() async {
         do {
-            let userID = try await api.getUserID()
-            let onCallNow = try await api.isOnCall(userID)
-            let currIncidents = try await api.getIncidents(userID)
+            let onCallNow = try await api.isOnCall()
+            let currIncidents = try await api.getIncidents()
             let newIncidents = currIncidents - incidents
             let hasIncidents = !currIncidents.isEmpty
 

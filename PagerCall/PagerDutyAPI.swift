@@ -33,31 +33,12 @@ struct PagerDutyAPI {
         }
     }
 
-    func getUserID() async throws -> String {
-        if !userID.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            return userID
-        }
-
-        let user = try await getUser()
-
-        return user.id
-    }
-
-    private func getUser() async throws -> UsersMeResp.User {
-        let data = try await get("/users/me")
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
-        let resp = try decoder.decode(UsersMeResp.self, from: data)
-
-        return resp.user
-    }
-
     private struct OncallsResp: Codable {
         let oncalls: [Oncall]
         struct Oncall: Codable {}
     }
 
-    func isOnCall(_ userID: String) async throws -> Bool {
+    func isOnCall() async throws -> Bool {
         let data = try await get("/oncalls", ["user_ids[]": userID])
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
@@ -70,33 +51,13 @@ struct PagerDutyAPI {
         let incidents: Incidents
     }
 
-    func getIncidents(_ userID: String) async throws -> Incidents {
+    func getIncidents() async throws -> Incidents {
         let data = try await get("/incidents", ["user_ids[]": userID])
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         let resp = try decoder.decode(IncidentsResp.self, from: data)
 
         return resp.incidents
-    }
-
-    func getIncidentsURL() async throws -> URL {
-        let user = try await getUser()
-        let url = URL(string: user.htmlUrl)!
-        let uid = userID.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? user.id : userID
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        components.path = "/incidents"
-        components.query = "assignedToUser=\(uid)"
-
-        return components.url!
-    }
-
-    func getOnCallShiftsURL() async throws -> URL {
-        let user = try await getUser()
-        let url = URL(string: user.htmlUrl)!
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-        components.path = "/my-on-call/week"
-
-        return components.url!
     }
 
     private func get(_ path: String, _ query: [String: String] = [:]) async throws -> Data {
