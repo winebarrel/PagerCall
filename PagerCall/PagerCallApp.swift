@@ -7,7 +7,6 @@ import UserNotifications
 struct PagerCallApp: App {
     @State private var initialized = false
     @State private var isMenuPresented = false
-    @State private var oldTimer: Timer?
     @State private var timer: Task<Void, Never>?
     @AppStorage("interval") private var interval = Constants.defaultInterval
     @StateObject private var pagerDuty = PagerDuty()
