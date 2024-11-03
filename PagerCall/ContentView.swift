@@ -13,13 +13,13 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            if let err = self.pagerDuty.error as? PagerDutyError {
+            if let pdErr = self.pagerDuty.error as? PagerDutyError {
                 List {
                     HStack {
                         Spacer()
                         Image(systemName: "exclamationmark.triangle")
                             .imageScale(.large)
-                        Text(err.localizedDescription)
+                        Text(pdErr.localizedDescription)
                         Spacer()
                     }
                 }
