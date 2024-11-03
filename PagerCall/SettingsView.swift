@@ -3,6 +3,7 @@ import SwiftUI
 
 struct SettingView: View {
     @State var apiKey: String = Vault.apiKey
+    @AppStorage("subdomain") private var subdomain = ""
     @AppStorage("interval") private var interval = Constants.defaultInterval
     @AppStorage("userID") private var userID = ""
     @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
@@ -10,10 +11,12 @@ struct SettingView: View {
     var body: some View {
         Form {
             SecureField(text: $apiKey) {
-                Link("User API Key", destination: URL(string: "https://support.pagerduty.com/main/docs/api-access-keys#section-generate-a-user-token-rest-api-key")!)
+                Link("API Key", destination: URL(string: "https://support.pagerduty.com/main/docs/api-access-keys")!)
             }.onChange(of: apiKey) {
                 Vault.apiKey = apiKey
             }
+            TextField("Subdomain", text: $subdomain)
+            TextField("User ID", text: $userID)
             TextField("Interval (sec)", value: $interval, format: .number.grouping(.never))
                 .onChange(of: interval) {
                     if interval < 1 {
@@ -22,7 +25,6 @@ struct SettingView: View {
                         interval = 3600
                     }
                 }
-            TextField("User ID (optional)", text: $userID)
             Toggle("Launch at login", isOn: $launchAtLogin)
                 .onChange(of: launchAtLogin) {
                     do {

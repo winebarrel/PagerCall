@@ -1,27 +1,18 @@
 import SwiftUI
 
 struct RightClickMenu: View {
+    @AppStorage("subdomain") private var subdomain = ""
     private let api = PagerDutyAPI()
 
     var body: some View {
         Button("My Incidents") {
             Task {
-                do {
-                    let url = try await api.getIncidentsURL()
-                    NSWorkspace.shared.open(url)
-                } catch {
-                    Logger.shared.error("failed to open 'My Incidents': \(error)")
-                }
+                NSWorkspace.shared.open(URL(string: "https://\(subdomain).pagerduty.com/incidents")!)
             }
         }
         Button("My On-Call Shifts") {
             Task {
-                do {
-                    let url = try await api.getOnCallShiftsURL()
-                    NSWorkspace.shared.open(url)
-                } catch {
-                    Logger.shared.error("failed to open 'My On-Call Shifts': \(error)")
-                }
+                NSWorkspace.shared.open(URL(string: "https://\(subdomain).pagerduty.com/my-on-call/week")!)
             }
         }
         Divider()
