@@ -2,16 +2,19 @@ import SwiftUI
 
 struct RightClickMenu: View {
     @AppStorage("subdomain") private var subdomain = ""
+    @AppStorage("userID") private var userID = ""
 
     var body: some View {
         Button("My Incidents") {
             Task {
-                NSWorkspace.shared.open(URL(string: "https://\(subdomain).pagerduty.com/incidents")!)
+                let url = URL(string: "https://\(subdomain).pagerduty.com/incidents?assignedToUser=\(userID)")!
+                NSWorkspace.shared.open(url)
             }
         }
         Button("My On-Call Shifts") {
             Task {
-                NSWorkspace.shared.open(URL(string: "https://\(subdomain).pagerduty.com/my-on-call/week")!)
+                let url = URL(string: "https://\(subdomain).pagerduty.com/my-on-call/week")!
+                NSWorkspace.shared.open(url)
             }
         }
         Divider()
