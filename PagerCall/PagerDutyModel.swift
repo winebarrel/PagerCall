@@ -49,11 +49,12 @@ class PagerDuty: ObservableObject {
     private func notify(_ newIncidents: Incidents) {
         for inc in newIncidents {
             Task {
-                let emoji = inc.urgency == .high ? "❗" : "⚠️"
+                let emoji = inc.urgency == .high ? "🚨" : "⚠️"
 
                 await Notification.notify(
                     id: inc.id,
-                    body: emoji + inc.title,
+                    title: "\(emoji)PagerCall [\(inc.urgency)]",
+                    body: inc.title,
                     url: inc.htmlUrl
                 )
             }
