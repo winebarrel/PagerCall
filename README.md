@@ -29,13 +29,17 @@ https://github.com/winebarrel/PagerCall/releases/latest
 
 ## Configuration
 
+**Right-click menu** > **Settings**:
+
 ![](https://github.com/user-attachments/assets/37bc295d-02c8-4f53-b793-344e53e11333)
 
 ![](https://github.com/user-attachments/assets/5d0de41f-0cf4-45d8-b2c4-5fb74bfd8880)
 
-* `Right-click menu` > `Settings`
-* API Key: https://support.pagerduty.com/main/docs/api-access-keys
-* Subdomain: 
+| Field | Value |
+| - | - |
+| API Key | See https://support.pagerduty.com/main/docs/api-access-keys |
+| Subdomain | ![](https://github.com/user-attachments/assets/71d5d38c-d3c6-43f5-bf92-a1565ed168fb) |
+| User ID | Open **My Profile** and enter User ID in the URL<br>![](https://github.com/user-attachments/assets/c68211b6-3c62-40fe-91f8-379b5de47ef7) |
 
 ## Note
 
