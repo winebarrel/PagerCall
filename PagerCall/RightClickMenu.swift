@@ -2,7 +2,6 @@ import SwiftUI
 
 struct RightClickMenu: View {
     @AppStorage("subdomain") private var subdomain = ""
-    private let api = PagerDutyAPI()
 
     var body: some View {
         Button("My Incidents") {
