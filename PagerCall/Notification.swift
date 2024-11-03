@@ -13,24 +13,15 @@ enum Notification {
         }
     }
 
-    static func notify(id: String, title: String? = nil, body: String? = nil, url: String? = nil) async {
+    static func notify(id: String, title: String, body: String, url: String) async {
         let userNotificationCenter = UNUserNotificationCenter.current()
 
         let content = UNMutableNotificationContent()
-
-        if let title {
-            content.title = title
-        }
-
-        if let body {
-            content.body = body
-        }
-
-        if let url {
-            content.userInfo = ["url": url]
-        }
-
+        content.title = title
+        content.body = body
+        content.userInfo = ["url": url]
         content.sound = UNNotificationSound.default
+
         let req = UNNotificationRequest(identifier: "\(Bundle.main.bundleIdentifier!).\(id)", content: content, trigger: nil)
         try? await userNotificationCenter.add(req)
     }
