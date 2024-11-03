@@ -44,7 +44,7 @@ struct PagerDutyAPI {
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         let resp = try decoder.decode(OncallsResp.self, from: data)
 
-        return resp.oncalls.count >= 1
+        return !resp.oncalls.isEmpty
     }
 
     private struct IncidentsResp: Codable {
