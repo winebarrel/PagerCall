@@ -41,6 +41,7 @@ class PagerDuty: ObservableObject {
             }
         } catch {
             Logger.shared.error("failed to get incidents: \(error)")
+            status = .error
             self.error = error
         }
     }
