@@ -29,15 +29,6 @@ struct PagerDutyAPI {
 
     @AppStorage("userID") private var userID: String = ""
 
-    private struct UsersMeResp: Codable {
-        let user: User
-
-        struct User: Codable {
-            let id: String
-            let htmlUrl: String
-        }
-    }
-
     private struct OncallsResp: Codable {
         let oncalls: [Oncall]
         struct Oncall: Codable {}
