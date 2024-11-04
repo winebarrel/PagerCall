@@ -1,4 +1,4 @@
-import SwiftUI
+import AppKit
 import UserNotifications
 
 enum Notification {

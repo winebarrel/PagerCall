@@ -1,5 +1,5 @@
 // from https://github.com/orchetect/MenuBarExtraAccess/discussions/2#discussioncomment-5744323
-import SwiftUI
+import AppKit
 
 class MouseHandlerView: NSView {
     var onRightMouseDown: (() -> Void)?

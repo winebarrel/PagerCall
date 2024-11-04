@@ -10,7 +10,6 @@ enum Status: String {
 
 @MainActor
 class PagerDuty: ObservableObject {
-    private let endpoint = URL(string: "https://api.pagerduty.com/")!
     private let api = PagerDutyAPI()
 
     @Published var incidents: Incidents = []

@@ -1,7 +1,6 @@
 import AsyncAlgorithms
 import MenuBarExtraAccess
 import SwiftUI
-import UserNotifications
 
 @main
 struct PagerCallApp: App {
@@ -13,7 +12,9 @@ struct PagerCallApp: App {
     @AppStorage("interval") private var interval = Constants.defaultInterval
     @StateObject private var pagerDuty = PagerDuty()
 
+    // swiftlint:disable unused_declaration
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    // swiftlint:enable unused_declaration
 
     private var popover: NSPopover = {
         let pop = NSPopover()
