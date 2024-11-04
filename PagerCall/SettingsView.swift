@@ -2,7 +2,7 @@ import ServiceManagement
 import SwiftUI
 
 struct SettingView: View {
-    @State var apiKey: String = Vault.apiKey
+    @Binding var apiKey: String
     @AppStorage("subdomain") private var subdomain = ""
     @AppStorage("userID") private var userID = ""
     @AppStorage("interval") private var interval = Constants.defaultInterval
@@ -60,5 +60,5 @@ struct SettingView: View {
 }
 
 #Preview {
-    SettingView()
+    SettingView(apiKey: .constant(""))
 }
