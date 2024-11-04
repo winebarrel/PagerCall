@@ -53,7 +53,7 @@ class PagerDuty: ObservableObject {
 
                 await Notification.notify(
                     id: inc.id,
-                    title: "\(emoji)PagerCall [\(inc.urgency)]",
+                    title: "\(emoji)PagerCall [\(inc.urgency)] on \(inc.service.summary)",
                     body: inc.title,
                     url: inc.htmlUrl
                 )

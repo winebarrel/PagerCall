@@ -4,7 +4,12 @@ struct Incident: Codable, Identifiable {
     let id: String
     let title: String
     let htmlUrl: String
+    let service: Service
     let urgency: Urgency
+
+    struct Service: Codable {
+        let summary: String
+    }
 
     enum Urgency: String, Codable {
         case high

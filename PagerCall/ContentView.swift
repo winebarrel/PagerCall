@@ -35,18 +35,25 @@ struct ContentView: View {
                 }
             } else {
                 List(self.pagerDuty.incidents) { incident in
-                    Link(destination: URL(string: incident.htmlUrl)!) {
-                        Text(incident.urgency.rawValue)
-                            .font(.caption)
-                            .padding(.horizontal, 3)
-                            .foregroundColor(.white)
-                            .background(incident.urgency == .high ? .urgencyHigh : .gray, in: RoundedRectangle(cornerRadius: 5))
-                        Text(incident.title)
-                            .multilineTextAlignment(.leading)
-                            .underline(hoverId == incident.id)
-                            .onHover { hovering in
-                                hoverId = hovering ? incident.id : ""
-                            }
+                    VStack(alignment: .leading) {
+                        HStack(spacing: 2) {
+                            Text(incident.urgency.rawValue)
+                                .padding(.horizontal, 3)
+                                .foregroundColor(.white)
+                                .background(incident.urgency == .high ? .urgencyHigh : .gray, in: RoundedRectangle(cornerRadius: 5))
+                            Text("on")
+                            Text(incident.service.summary)
+                                .fontWeight(.bold)
+                        }.font(.caption)
+
+                        Link(destination: URL(string: incident.htmlUrl)!) {
+                            Text(incident.title)
+                                .multilineTextAlignment(.leading)
+                                .underline(hoverId == incident.id)
+                                .onHover { hovering in
+                                    hoverId = hovering ? incident.id : ""
+                                }
+                        }
                     }
                 }
             }
