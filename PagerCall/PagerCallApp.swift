@@ -8,6 +8,7 @@ struct PagerCallApp: App {
     @State private var initialized = false
     @State private var isMenuPresented = false
     @State private var timer: Task<Void, Never>?
+    // NOTE: Define "apiKey" in PagerCallApp so that values are not lost during sleep.
     @State private var apiKey = Vault.apiKey
     @AppStorage("interval") private var interval = Constants.defaultInterval
     @StateObject private var pagerDuty = PagerDuty()
