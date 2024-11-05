@@ -12,7 +12,7 @@ https://github.com/winebarrel/PagerCall/releases/latest
 
 ### Show assigned incidents
 
-![](https://github.com/user-attachments/assets/245b1668-c602-4d98-956f-0f24f6e40e37)
+![](https://github.com/user-attachments/assets/cdfbc1fe-c497-47ab-9154-2c0bddcc6db5)
 
 ### Notifications
 
