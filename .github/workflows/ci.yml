@@ -67,4 +67,4 @@ jobs:
           xcodebuild build analyze -scheme PagerCall -destination 'generic/platform=macOS' -allowProvisioningUpdates -configuration Debug | tee build.log
       - name: SwiftLint Analyse
         run: |
-          ./swiftlint analyze --compiler-log-path build.log
+          ./swiftlint analyze --strict --compiler-log-path build.log

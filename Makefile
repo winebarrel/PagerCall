@@ -16,7 +16,7 @@ build: clean
 .PHONY: swiftlint-analyze
 swiftlint-analyze:
 	$(MAKE) build CONFIGURATION=Debug
-	swiftlint analyze --compiler-log-path $(BUILD_LOG)
+	swiftlint analyze --strict --compiler-log-path $(BUILD_LOG)
 
 .PHONY: clean
 clean:
