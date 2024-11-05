@@ -38,13 +38,11 @@ class PagerDutyModel: ObservableObject {
             if !newIncidents.isEmpty {
                 notify(newIncidents)
             }
+        } catch let pdErr as PagerDutyError {
+            status = .error
+            error = pdErr
         } catch {
             Logger.shared.error("failed to get incidents: \(error)")
-
-            if let pdErr = error as? PagerDutyError {
-                status = .error
-                self.error = pdErr
-            }
         }
     }
 
