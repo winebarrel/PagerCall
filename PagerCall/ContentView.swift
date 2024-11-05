@@ -1,12 +1,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var pagerDuty: PagerDuty
+    @ObservedObject var pagerDuty: PagerDutyModel
     @State private var hoverId = ""
 
     var body: some View {
         VStack {
-            if let pdErr = self.pagerDuty.error as? PagerDutyError {
+            if let pdErr = self.pagerDuty.error {
                 List {
                     HStack {
                         Spacer()
@@ -76,5 +76,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(pagerDuty: PagerDuty())
+    ContentView(pagerDuty: PagerDutyModel())
 }
