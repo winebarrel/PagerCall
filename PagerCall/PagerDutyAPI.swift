@@ -55,10 +55,6 @@ struct PagerDutyAPI {
         decoder.dateDecodingStrategy = .iso8601
         let resp = try decoder.decode(IncidentsResp.self, from: data)
 
-        for iii in resp.incidents {
-            print(iii.createdAt.relative())
-        }
-
         return resp.incidents
     }
 

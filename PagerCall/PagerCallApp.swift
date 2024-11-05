@@ -10,7 +10,7 @@ struct PagerCallApp: App {
     // NOTE: Define "apiKey" in PagerCallApp so that values are not lost during sleep.
     @State private var apiKey = Vault.apiKey
     @AppStorage("interval") private var interval = Constants.defaultInterval
-    @StateObject private var pagerDuty = PagerDuty()
+    @StateObject private var pagerDuty = PagerDutyModel()
 
     // swiftlint:disable unused_declaration
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate

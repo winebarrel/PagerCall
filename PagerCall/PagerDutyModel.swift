@@ -9,13 +9,13 @@ enum Status: String {
 }
 
 @MainActor
-class PagerDuty: ObservableObject {
+class PagerDutyModel: ObservableObject {
     private let api = PagerDutyAPI()
 
     @Published var incidents: Incidents = []
     @Published var status: Status = .notOnCallWithoutIncident
     @Published var updatedAt: Date?
-    @Published var error: Error?
+    @Published var error: PagerDutyError?
 
     func update() async {
         do {
@@ -40,8 +40,11 @@ class PagerDuty: ObservableObject {
             }
         } catch {
             Logger.shared.error("failed to get incidents: \(error)")
-            status = .error
-            self.error = error
+
+            if let pdErr = error as? PagerDutyError {
+                status = .error
+                self.error = pdErr
+            }
         }
     }
 
