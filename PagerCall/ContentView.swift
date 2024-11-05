@@ -4,13 +4,6 @@ struct ContentView: View {
     @ObservedObject var pagerDuty: PagerDuty
     @State private var hoverId = ""
 
-    private let dateFmt = {
-        let dtfmt = DateFormatter()
-        dtfmt.dateStyle = .none
-        dtfmt.timeStyle = .short
-        return dtfmt
-    }()
-
     var body: some View {
         VStack {
             if let pdErr = self.pagerDuty.error as? PagerDutyError {
@@ -46,13 +39,16 @@ struct ContentView: View {
                                 .fontWeight(.bold)
                         }.font(.caption)
 
-                        Link(destination: URL(string: incident.htmlUrl)!) {
-                            Text(incident.title)
-                                .multilineTextAlignment(.leading)
-                                .underline(hoverId == incident.id)
-                                .onHover { hovering in
-                                    hoverId = hovering ? incident.id : ""
-                                }
+                        HStack {
+                            Link(destination: URL(string: incident.htmlUrl)!) {
+                                Text(incident.title)
+                                    .multilineTextAlignment(.leading)
+                                    .underline(hoverId == incident.id)
+                                    .onHover { hovering in
+                                        hoverId = hovering ? incident.id : ""
+                                    }
+                            }
+                            Text("(\(incident.createdAt.relative()))").font(.caption2)
                         }
                     }
                 }
@@ -67,7 +63,7 @@ struct ContentView: View {
                 }
 
                 let label = if let updatedAt = pagerDuty.updatedAt {
-                    dateFmt.string(from: updatedAt)
+                    updatedAt.shortTime()
                 } else {
                     "-"
                 }

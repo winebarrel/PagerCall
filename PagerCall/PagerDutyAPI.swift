@@ -6,6 +6,7 @@ struct Incident: Codable, Identifiable {
     let htmlUrl: String
     let service: Service
     let urgency: Urgency
+    let createdAt: Date
 
     struct Service: Codable {
         let summary: String
@@ -51,7 +52,12 @@ struct PagerDutyAPI {
         let data = try await get("/incidents", ["user_ids[]": userID])
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
+        decoder.dateDecodingStrategy = .iso8601
         let resp = try decoder.decode(IncidentsResp.self, from: data)
+
+        for iii in resp.incidents {
+            print(iii.createdAt.relative())
+        }
 
         return resp.incidents
     }
