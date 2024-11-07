@@ -17,10 +17,10 @@ class PagerDutyModel: ObservableObject {
     @Published var updatedAt: Date?
     @Published var error: PagerDutyError?
 
-    func update() async {
+    func update(_ apiKey: String) async {
         do {
-            let onCallNow = try await api.isOnCall()
-            let currIncidents = try await api.getIncidents()
+            let onCallNow = try await api.isOnCall(apiKey)
+            let currIncidents = try await api.getIncidents(apiKey)
             let newIncidents = currIncidents - incidents
             let hasIncidents = !currIncidents.isEmpty
 

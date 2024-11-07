@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @ObservedObject var pagerDuty: PagerDutyModel
+    @Binding var apiKey: String
     @State private var hoverId = ""
 
     var body: some View {
@@ -56,7 +57,7 @@ struct ContentView: View {
             HStack {
                 Button {
                     Task {
-                        await pagerDuty.update()
+                        await pagerDuty.update(apiKey)
                     }
                 } label: {
                     Image(systemName: "arrow.triangle.2.circlepath")
@@ -76,5 +77,8 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView(pagerDuty: PagerDutyModel())
+    ContentView(
+        pagerDuty: PagerDutyModel(),
+        apiKey: .constant("")
+    )
 }

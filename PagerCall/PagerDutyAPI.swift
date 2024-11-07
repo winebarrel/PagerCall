@@ -35,8 +35,8 @@ struct PagerDutyAPI {
         struct Oncall: Codable {}
     }
 
-    func isOnCall() async throws -> Bool {
-        let data = try await get("/oncalls", ["user_ids[]": userID])
+    func isOnCall(_ apiKey: String) async throws -> Bool {
+        let data = try await get(apiKey, "/oncalls", ["user_ids[]": userID])
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         let resp = try decoder.decode(OncallsResp.self, from: data)
@@ -48,8 +48,8 @@ struct PagerDutyAPI {
         let incidents: Incidents
     }
 
-    func getIncidents() async throws -> Incidents {
-        let data = try await get("/incidents", ["user_ids[]": userID])
+    func getIncidents(_ apiKey: String) async throws -> Incidents {
+        let data = try await get(apiKey, "/incidents", ["user_ids[]": userID])
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .iso8601
@@ -58,14 +58,14 @@ struct PagerDutyAPI {
         return resp.incidents
     }
 
-    private func get(_ path: String, _ query: [String: String] = [:]) async throws -> Data {
+    private func get(_ apiKey: String, _ path: String, _ query: [String: String] = [:]) async throws -> Data {
         var url = endpoint.appendingPathComponent(path)
         url.append(queryItems: query.map { key, val in URLQueryItem(name: key, value: val) })
 
         var req = URLRequest(url: url)
         req.setValue("application/json", forHTTPHeaderField: "Accept")
         req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.setValue("Token token=\(Vault.apiKey)", forHTTPHeaderField: "Authorization")
+        req.setValue("Token token=\(apiKey)", forHTTPHeaderField: "Authorization")
 
         let (data, rawResp) = try await URLSession.shared.data(for: req)
 
