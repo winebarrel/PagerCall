@@ -27,7 +27,7 @@ struct PagerCallApp: App {
     private func initialize() {
         Notification.initialize()
 
-        let contentView = ContentView(pagerDuty: pagerDuty)
+        let contentView = ContentView(pagerDuty: pagerDuty, apiKey: $apiKey)
         popover.contentViewController = NSHostingController(rootView: contentView)
 
         scheduleUpdate()
@@ -42,10 +42,10 @@ struct PagerCallApp: App {
         )
 
         timer = Task {
-            await pagerDuty.update()
+            await pagerDuty.update(apiKey)
 
             for await _ in seq {
-                await pagerDuty.update()
+                await pagerDuty.update(apiKey)
             }
         }
     }
