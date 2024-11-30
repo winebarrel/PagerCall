@@ -41,6 +41,7 @@ class PagerDutyModel: ObservableObject {
         } catch let pdErr as PagerDutyError {
             status = .error
             error = pdErr
+            updatedAt = nil
         } catch {
             Logger.shared.error("failed to get incidents: \(error)")
         }
