@@ -384,7 +384,7 @@
 			repositoryURL = "https://github.com/square/Valet.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.3.0;
+				minimumVersion = 5.0.0;
 			};
 		};
 		AD89A2D32CCE9CF800F6BB1A /* XCRemoteSwiftPackageReference "swift-async-algorithms" */ = {
