@@ -12,6 +12,7 @@ struct SettingView: View {
         Form {
             SecureField(text: $apiKey) {
                 Link("API Key", destination: URL(string: "https://support.pagerduty.com/main/docs/api-access-keys")!)
+                    .effectHoverCursor()
             }.onChange(of: apiKey) {
                 Vault.apiKey = apiKey
             }
@@ -44,6 +45,7 @@ struct SettingView: View {
                 // swiftlint:enable force_cast
                 Text("Ver. \(appVer).\(buildVer)")
             }
+            .effectHoverCursor()
             .frame(maxWidth: .infinity, alignment: .trailing)
         }
         .padding(20)
