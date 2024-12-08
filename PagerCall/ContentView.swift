@@ -48,6 +48,7 @@ struct ContentView: View {
                                     .onHover { hovering in
                                         hoverId = hovering ? incident.id : ""
                                     }
+                                    .effectHoverCursor()
                             }
                             Text("(\(incident.createdAt.relative()))").font(.caption2)
                         }
@@ -61,7 +62,7 @@ struct ContentView: View {
                     }
                 } label: {
                     Image(systemName: "arrow.triangle.2.circlepath")
-                }
+                }.effectHoverCursor()
 
                 let label = if let updatedAt = pagerDuty.updatedAt {
                     updatedAt.shortTime()
