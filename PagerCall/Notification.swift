@@ -1,17 +1,6 @@
 import UserNotifications
 
 enum Notification {
-    static func initialize() {
-        let userNotificationCenter = UNUserNotificationCenter.current()
-
-        userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { authorized, _ in
-            guard authorized else {
-                Logger.shared.warning("user notification not authorized")
-                return
-            }
-        }
-    }
-
     static func notify(id: String, title: String, body: String, url: String) async {
         let userNotificationCenter = UNUserNotificationCenter.current()
 
