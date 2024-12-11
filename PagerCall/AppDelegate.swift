@@ -7,9 +7,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         Task {
             do {
-                let userNotificationCenter = UNUserNotificationCenter.current()
+                let center = UNUserNotificationCenter.current()
 
-                guard try await userNotificationCenter.requestAuthorization(options: [.alert, .sound]) else {
+                guard try await center.requestAuthorization(options: [.alert, .sound]) else {
                     Logger.shared.warning("user notification not authorized")
                     return
                 }
