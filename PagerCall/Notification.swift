@@ -6,7 +6,7 @@ enum Notification {
 
         userNotificationCenter.requestAuthorization(options: [.alert, .sound]) { authorized, _ in
             guard authorized else {
-                Logger.shared.warning("user notificationCentern not authorized")
+                Logger.shared.warning("user notification not authorized")
                 return
             }
         }
