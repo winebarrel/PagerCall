@@ -4,6 +4,19 @@ import UserNotifications
 class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_: Foundation.Notification) {
         UNUserNotificationCenter.current().delegate = self
+
+        Task {
+            do {
+                let userNotificationCenter = UNUserNotificationCenter.current()
+
+                guard try await userNotificationCenter.requestAuthorization(options: [.alert, .sound]) else {
+                    Logger.shared.warning("user notification not authorized")
+                    return
+                }
+            } catch {
+                Logger.shared.error("user notification authorization request error: \(error)")
+            }
+        }
     }
 }
 
