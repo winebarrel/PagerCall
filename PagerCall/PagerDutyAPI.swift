@@ -36,7 +36,7 @@ struct PagerDutyAPI {
     }
 
     func isOnCall(_ apiKey: String) async throws -> Bool {
-        let data = try await get(apiKey, "/oncalls", ["user_ids[]": userID])
+        let data = try await get(apiKey, "oncalls", ["user_ids[]": userID])
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         let resp = try decoder.decode(OncallsResp.self, from: data)
@@ -49,7 +49,7 @@ struct PagerDutyAPI {
     }
 
     func getIncidents(_ apiKey: String) async throws -> Incidents {
-        let data = try await get(apiKey, "/incidents", ["user_ids[]": userID])
+        let data = try await get(apiKey, "incidents", ["user_ids[]": userID])
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .iso8601
@@ -59,7 +59,7 @@ struct PagerDutyAPI {
     }
 
     private func get(_ apiKey: String, _ path: String, _ query: [String: String] = [:]) async throws -> Data {
-        var url = endpoint.appendingPathComponent(path)
+        var url = endpoint.appending(component: path, directoryHint: .notDirectory)
         url.append(queryItems: query.map { key, val in URLQueryItem(name: key, value: val) })
 
         var req = URLRequest(url: url)
