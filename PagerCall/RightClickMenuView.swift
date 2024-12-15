@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct RightClickMenu: View {
+struct RightClickMenuView: View {
     @AppStorage("subdomain") private var subdomain = ""
     @AppStorage("userID") private var userID = ""
 

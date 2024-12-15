@@ -50,7 +50,7 @@ struct PagerCallApp: App {
 
     var body: some Scene {
         MenuBarExtra {
-            RightClickMenu()
+            RightClickMenuView()
         } label: {
             Image(systemName: self.pagerDuty.status.rawValue)
             Text("PD")
