@@ -16,7 +16,7 @@ struct PagerCallApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
     // swiftlint:enable unused_declaration
 
-    private var popover: NSPopover = {
+    private var popover = {
         let pop = NSPopover()
         pop.behavior = .transient
         pop.animates = false
