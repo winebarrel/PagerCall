@@ -7,7 +7,27 @@ struct ContentView: View {
 
     var body: some View {
         VStack {
-            if let pdErr = self.pagerDuty.error {
+            if apiKey.isEmpty {
+                List {
+                    VStack {
+                        Spacer().padding()
+                        Image(nsImage: NSImage(named: "AppIcon")!)
+                        Link(destination: URL(string: "https://github.com/winebarrel/PagerCall#configuration")!) {
+                            Text("Set up your PagerDuty API Key.")
+                        }.effectHoverCursor()
+                        HStack {
+                            Spacer()
+                            SettingsLink {
+                                Image(systemName: "gearshape")
+                                Text("Settings")
+                            }.preActionButtonStyle {
+                                NSApp.activate(ignoringOtherApps: true)
+                            }
+                            Spacer()
+                        }
+                    }
+                }
+            } else if let pdErr = self.pagerDuty.error {
                 List {
                     HStack {
                         Spacer()
