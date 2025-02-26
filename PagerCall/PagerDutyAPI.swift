@@ -49,7 +49,7 @@ struct PagerDutyAPI {
     }
 
     func getIncidents(_ apiKey: String) async throws -> Incidents {
-        let data = try await get(apiKey, "incidents", ["user_ids[]": userID])
+        let data = try await get(apiKey, "incidents", ["user_ids[]": userID, "date_range": "all"])
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .iso8601
