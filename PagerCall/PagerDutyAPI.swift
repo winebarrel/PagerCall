@@ -7,6 +7,7 @@ struct Incident: Codable, Identifiable {
     let service: Service
     let urgency: Urgency
     let createdAt: Date
+    let status: Status
 
     struct Service: Codable {
         let summary: String
@@ -15,6 +16,12 @@ struct Incident: Codable, Identifiable {
     enum Urgency: String, Codable {
         case high
         case low
+    }
+
+    enum Status: String, Codable {
+        case triggered
+        case acknowledged
+        case resolved
     }
 }
 
@@ -36,7 +43,7 @@ struct PagerDutyAPI {
     }
 
     func isOnCall(_ apiKey: String) async throws -> Bool {
-        let data = try await get(apiKey, "oncalls", ["user_ids[]": userID])
+        let data = try await get(apiKey, "oncalls", ["user_ids[]": [userID]])
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         let resp = try decoder.decode(OncallsResp.self, from: data)
@@ -49,7 +56,11 @@ struct PagerDutyAPI {
     }
 
     func getIncidents(_ apiKey: String) async throws -> Incidents {
-        let data = try await get(apiKey, "incidents", ["user_ids[]": userID, "date_range": "all"])
+        let data = try await get(apiKey, "incidents", [
+            "user_ids[]": [userID],
+            "date_range": ["all"],
+            "statuses[]": ["triggered", "acknowledged"]
+        ])
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .iso8601
@@ -58,9 +69,13 @@ struct PagerDutyAPI {
         return resp.incidents
     }
 
-    private func get(_ apiKey: String, _ path: String, _ query: [String: String] = [:]) async throws -> Data {
+    private func get(_ apiKey: String, _ path: String, _ query: [String: [String]] = [:]) async throws -> Data {
         var url = endpoint.appending(component: path, directoryHint: .notDirectory)
-        url.append(queryItems: query.map { key, val in URLQueryItem(name: key, value: val) })
+        let queryItems = query.flatMap { key, valList in
+            valList.map { val in URLQueryItem(name: key, value: val) }
+        }
+
+        url.append(queryItems: queryItems)
 
         var req = URLRequest(url: url)
         req.setValue("application/json", forHTTPHeaderField: "Accept")
