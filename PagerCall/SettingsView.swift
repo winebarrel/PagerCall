@@ -41,9 +41,8 @@ struct SettingView: View {
             Link(destination: URL(string: "https://github.com/winebarrel/PagerCall")!) {
                 // swiftlint:disable force_cast
                 let appVer = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as! String
-                let buildVer = Bundle.main.infoDictionary!["CFBundleVersion"] as! String
                 // swiftlint:enable force_cast
-                Text("Ver. \(appVer).\(buildVer)")
+                Text("Ver. \(appVer)")
             }
             .effectHoverCursor()
             .frame(maxWidth: .infinity, alignment: .trailing)
