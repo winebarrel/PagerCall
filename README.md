@@ -1,6 +1,6 @@
-# PagerCall
+# PagerCall [![CI](https://github.com/winebarrel/PagerCall/actions/workflows/ci.yml/badge.svg)](https://github.com/winebarrel/PagerCall/actions/workflows/ci.yml)
 
-[![CI](https://github.com/winebarrel/PagerCall/actions/workflows/ci.yml/badge.svg)](https://github.com/winebarrel/PagerCall/actions/workflows/ci.yml)
+[![](https://github.com/user-attachments/assets/e5fdb92f-a996-476f-8bb0-aa05c2b7d447)](https://apps.apple.com/jp/app/pagercall/id6740581987)
 
 PagerCall is a utility app that shows [PagerDuty](https://www.pagerduty.com/) status on the menu bar.
 
