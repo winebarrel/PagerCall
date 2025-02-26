@@ -72,6 +72,18 @@ struct ContentView: View {
                             }
                             Text("(\(incident.createdAt.relative()))").font(.caption2)
                         }
+
+                        HStack(spacing: 2) {
+                            Text("status:")
+                            let status = incident.status
+                            let color: Color = switch status {
+                            case .acknowledged: .brown
+                            case .triggered: .red
+                            default: .primary
+                            }
+                            Text(status.rawValue).foregroundStyle(color)
+                        }
+                        .font(.footnote)
                     }
                 }
             }
