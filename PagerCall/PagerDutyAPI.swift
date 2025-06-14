@@ -52,21 +52,38 @@ struct PagerDutyAPI {
     }
 
     private struct IncidentsResp: Codable {
+        let offset: Int
+        let limit: Int
+        let more: Bool
         let incidents: Incidents
     }
 
     func getIncidents(_ apiKey: String) async throws -> Incidents {
-        let data = try await get(apiKey, "incidents", [
-            "user_ids[]": [userID],
-            "date_range": ["all"],
-            "statuses[]": ["triggered", "acknowledged"]
-        ])
+        var incidents: Incidents = []
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase
         decoder.dateDecodingStrategy = .iso8601
-        let resp = try decoder.decode(IncidentsResp.self, from: data)
+        var offset = 0
 
-        return resp.incidents
+        while true {
+            let data = try await get(apiKey, "incidents", [
+                "user_ids[]": [userID],
+                "date_range": ["all"],
+                "statuses[]": ["triggered", "acknowledged"],
+                "limit": ["100"],
+                "offset": [String(offset)]
+            ])
+            let resp = try decoder.decode(IncidentsResp.self, from: data)
+            incidents += resp.incidents
+
+            if !resp.more {
+                break
+            }
+
+            offset = resp.offset + resp.limit
+        }
+
+        return incidents
     }
 
     private func get(_ apiKey: String, _ path: String, _ query: [String: [String]] = [:]) async throws -> Data {
