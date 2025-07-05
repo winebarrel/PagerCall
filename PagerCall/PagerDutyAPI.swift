@@ -36,6 +36,7 @@ struct PagerDutyAPI {
     private let endpoint = URL(string: "https://api.pagerduty.com/")!
 
     @AppStorage("userID") private var userID: String = ""
+    @AppStorage("sortBy") private var sortBy = ItemOrder.incidentMumberAsc
 
     private struct OncallsResp: Codable {
         let oncalls: [Oncall]
@@ -71,7 +72,8 @@ struct PagerDutyAPI {
                 "date_range": ["all"],
                 "statuses[]": ["triggered", "acknowledged"],
                 "limit": ["100"],
-                "offset": [String(offset)]
+                "offset": [String(offset)],
+                "sort_by": [sortBy.rawValue]
             ])
             let resp = try decoder.decode(IncidentsResp.self, from: data)
             incidents += resp.incidents
