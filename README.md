@@ -12,11 +12,11 @@ https://github.com/winebarrel/PagerCall/releases/latest
 
 ### Show assigned incidents
 
-![](https://github.com/user-attachments/assets/f5e31fa8-4bd0-4970-84b6-7c3137663613)
+![](https://github.com/user-attachments/assets/a81a7390-3119-4f7e-9997-37b4e122ac3a)
 
 ### Notifications
 
-![](https://github.com/user-attachments/assets/cd37b6fc-7b40-446b-aac0-d51a3cb49e5e)
+![](https://github.com/user-attachments/assets/9c79e958-6729-464b-881b-3a14c829a5a6)
 
 ### Icon indicate PagerDuty status
 
