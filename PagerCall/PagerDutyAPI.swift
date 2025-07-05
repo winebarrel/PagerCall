@@ -8,6 +8,7 @@ struct Incident: Codable, Identifiable {
     let urgency: Urgency
     let createdAt: Date
     let status: Status
+    let incidentNumber: Int
 
     struct Service: Codable {
         let summary: String
