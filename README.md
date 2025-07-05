@@ -31,9 +31,9 @@ https://github.com/winebarrel/PagerCall/releases/latest
 
 **Right-click menu** > **Settings**:
 
-![](https://github.com/user-attachments/assets/37bc295d-02c8-4f53-b793-344e53e11333)
+![](https://github.com/user-attachments/assets/932949a9-4c48-4523-a943-0eb5ef56a25f)
 
-![](https://github.com/user-attachments/assets/5d0de41f-0cf4-45d8-b2c4-5fb74bfd8880)
+![](https://github.com/user-attachments/assets/44cf1972-7a58-407e-84db-4f4562b58e05)
 
 | Field | Value |
 | - | - |
