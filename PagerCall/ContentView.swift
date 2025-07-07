@@ -74,7 +74,7 @@ struct ContentView: View {
                         }
 
                         HStack(spacing: 2) {
-                            Text("#\(incident.incidentNumber)")
+                            Text("#\(String(incident.incidentNumber))") // NOTE: Fix number format
                             Text("status:")
                             let status = incident.status
                             let color: Color = switch status {
