@@ -385,7 +385,40 @@ jobs:
             1. Creating a pending review: Use the mcp__github__create_pending_pull_request_review to create a Pending Pull Request Review.
 
             2. Adding review comments:
-                2.1 Use the mcp__github__add_comment_to_pending_review to add comments to the Pending Pull Request Review. Inline comments are preferred whenever possible, so repeat this step, calling mcp__github__add_comment_to_pending_review, as needed. All comments about specific lines of code should use inline comments. It is preferred to use code suggestions when possible, which include a code block that is labeled "suggestion", which contains what the new code should be. All comments should also have a severity.
+                2.1 Use the mcp__github__add_comment_to_pending_review to add comments to the Pending Pull Request Review. Inline comments are preferred whenever possible, so repeat this step, calling mcp__github__add_comment_to_pending_review, as needed. All comments about specific lines of code should use inline comments. It is preferred to use code suggestions when possible, which include a code block that is labeled "suggestion", which contains what the new code should be. All comments should also have a severity. The syntax is:
+                  Normal Comment Syntax:
+                  <COMMENT>
+                  {{SEVERITY}} {{COMMENT_TEXT}}
+                  </COMMENT>
+
+                  Inline Comment Syntax: (Preferred):
+                  <COMMENT>
+                  {{SEVERITY}} {{COMMENT_TEXT}}
+                  ```suggestion
+                  {{CODE_SUGGESTION}}
+                  ```
+                  </COMMENT>
+
+                  Prepend a severity emoji to each comment:
+                  - 🟢 for low severity
+                  - 🟡 for medium severity
+                  - 🟠 for high severity
+                  - 🔴 for critical severity
+                  - 🔵 if severity is unclear
+
+                  Including all of this, an example inline comment would be:
+                  <COMMENT>
+                  🟢 Use camelCase for function names
+                  ```suggestion
+                  myFooBarFunction
+                  ```
+                  </COMMENT>
+
+                  A critical severity example would be:
+                  <COMMENT>
+                  🔴 Remove storage key from GitHub
+                  ```suggestion
+                  ```
 
             3. Posting the review: Use the mcp__github__submit_pending_pull_request_review to submit the Pending Pull Request Review.
 
