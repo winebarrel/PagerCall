@@ -394,7 +394,7 @@ jobs:
                   Inline Comment Syntax: (Preferred):
                   <COMMENT>
                   {{SEVERITY}} {{COMMENT_TEXT}}
-                  ```suggestion
+                  ```
                   {{CODE_SUGGESTION}}
                   ```
                   </COMMENT>
