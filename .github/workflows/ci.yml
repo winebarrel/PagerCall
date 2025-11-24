@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - uses: cirruslabs/swiftlint-action@v1
         with:
           version: latest
@@ -27,7 +27,7 @@ jobs:
     runs-on: macos-14
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
       - name: Switch Xcode
         # https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md#xcode
         run: sudo xcode-select -s /Applications/Xcode_16.2.app
