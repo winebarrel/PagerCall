@@ -12,26 +12,26 @@ https://github.com/winebarrel/PagerCall/releases/latest
 
 ### Show assigned incidents
 
-![](https://github.com/user-attachments/assets/d41db82d-44c2-4668-b540-077995689941)
+![](https://github.com/user-attachments/assets/a90a7dcf-46e9-43f8-85c5-b0356794f836)
 
 ### Notifications
 
-![](https://github.com/user-attachments/assets/75f06b58-3126-4d55-a2ca-c4431890bbb8)
+![](https://github.com/user-attachments/assets/3b1c907a-4859-4d0f-a6ab-0875ee4c7434)
 
 ### Icon indicate PagerDuty status
 
 | Icon | Status |
 | - | - |
-| ![](https://github.com/user-attachments/assets/70c94f47-1d51-4694-ba7b-03fb7676d975) | On-call |
-| ![](https://github.com/user-attachments/assets/d97a1cf5-7416-44e2-a3fc-e8a53fde679d) | On-call (with assigned incidents) |
-| ![](https://github.com/user-attachments/assets/c726dcd2-4fbf-4a67-af2e-2bce53fac572) | Not on-call |
-| ![](https://github.com/user-attachments/assets/9be94bf9-1096-4b18-afaf-3a7b8993d012) | Not on-call (with assigned incidents) |
+| ![](https://github.com/user-attachments/assets/eb06b0df-774f-48c4-b64d-e43eb21e249d) | On-call |
+| ![](https://github.com/user-attachments/assets/1a08ea6d-f8d0-447e-87f4-5b96838d9280) | On-call (with assigned incidents) |
+| ![](https://github.com/user-attachments/assets/60945feb-019d-4e59-85d0-4703f3556946) | Not on-call |
+| ![](https://github.com/user-attachments/assets/3c63d109-c975-4dee-ac8a-01f73e9a3092) | Not on-call (with assigned incidents) |
 
 ## Configuration
 
 **Right-click menu** > **Settings**:
 
-![](https://github.com/user-attachments/assets/8d80ff9f-7efb-490d-8b96-21b25fd1ffc2)
+![](https://github.com/user-attachments/assets/1ab70b5b-2de9-46f9-a3a3-c534f9cb6ff0)
 
 ![](https://github.com/user-attachments/assets/44cf1972-7a58-407e-84db-4f4562b58e05)
 
