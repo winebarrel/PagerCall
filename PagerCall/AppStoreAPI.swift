@@ -15,7 +15,8 @@ enum AppStoreAPI {
             let (data, rawResp) = try await URLSession.shared.data(for: req)
 
             guard let resp = rawResp as? HTTPURLResponse else {
-                fatalError("failed to cast URLResponse to HTTPURLResponse")
+                Logger.shared.error("AppStore API: failed to cast URLResponse to HTTPURLResponse")
+                return nil
             }
 
             if resp.statusCode != 200 {
