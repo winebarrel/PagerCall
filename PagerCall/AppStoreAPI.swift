@@ -11,7 +11,7 @@ struct AppStoreResp: Codable {
 enum AppStoreAPI {
     static func getInfo(_ bundleId: String) async -> AppStoreRespResult? {
         do {
-            let req = URLRequest(url: URL(string: "https://itunes.apple.com/br/lookup?bundleId=\(bundleId)")!)
+            let req = URLRequest(url: URL(string: "https://itunes.apple.com/lookup?bundleId=\(bundleId)")!)
             let (data, rawResp) = try await URLSession.shared.data(for: req)
 
             guard let resp = rawResp as? HTTPURLResponse else {
