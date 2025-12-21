@@ -53,7 +53,6 @@ struct PagerCallApp: App {
             RightClickMenuView()
         } label: {
             Image(systemName: self.pagerDuty.status.rawValue)
-            Text("PD")
         }.menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in
             if !initialized {
                 initialize()
