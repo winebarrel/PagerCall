@@ -9,7 +9,7 @@ struct SettingView: View {
     @AppStorage("interval") private var interval = Constants.defaultInterval
     @AppStorage("sortBy") private var sortBy = ItemOrder.incidentMumberAsc
     @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
-    @State private var showNewVersion = true
+    @State private var showNewVersion = false
 
     var body: some View {
         Form {
