@@ -22,10 +22,10 @@ https://github.com/winebarrel/PagerCall/releases/latest
 
 | Icon | Status |
 | - | - |
-| ![](https://github.com/user-attachments/assets/70c94f47-1d51-4694-ba7b-03fb7676d975) | On-call |
-| ![](https://github.com/user-attachments/assets/d97a1cf5-7416-44e2-a3fc-e8a53fde679d) | On-call (with assigned incidents) |
-| ![](https://github.com/user-attachments/assets/c726dcd2-4fbf-4a67-af2e-2bce53fac572) | Not on-call |
-| ![](https://github.com/user-attachments/assets/9be94bf9-1096-4b18-afaf-3a7b8993d012) | Not on-call (with assigned incidents) |
+| ![](https://github.com/user-attachments/assets/eb06b0df-774f-48c4-b64d-e43eb21e249d) | On-call |
+| ![](https://github.com/user-attachments/assets/1a08ea6d-f8d0-447e-87f4-5b96838d9280) | On-call (with assigned incidents) |
+| ![](https://github.com/user-attachments/assets/60945feb-019d-4e59-85d0-4703f3556946) | Not on-call |
+| ![](https://github.com/user-attachments/assets/3c63d109-c975-4dee-ac8a-01f73e9a3092) | Not on-call (with assigned incidents) |
 
 ## Configuration
 
