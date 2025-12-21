@@ -52,13 +52,13 @@ struct PagerCallApp: App {
         MenuBarExtra {
             RightClickMenuView()
         } label: {
-            Image(systemName: self.pagerDuty.status.rawValue)
-        }.menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in
-            if !initialized {
-                initialize()
-                initialized = true
+            Image(systemName: self.pagerDuty.status.rawValue).onAppear {
+                if !initialized {
+                    initialize()
+                    initialized = true
+                }
             }
-
+        }.menuBarExtraAccess(isPresented: $isMenuPresented) { statusItem in
             if let button = statusItem.button {
                 let mouseHandlerView = MouseHandlerView(frame: button.frame)
 
