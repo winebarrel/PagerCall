@@ -24,13 +24,13 @@ jobs:
 
   build:
     name: Build and Analyse
-    runs-on: macos-14
+    runs-on: macos-26
     steps:
       - name: Checkout
         uses: actions/checkout@v6
       - name: Switch Xcode
         # https://github.com/actions/runner-images/blob/main/images/macos/macos-14-Readme.md#xcode
-        run: sudo xcode-select -s /Applications/Xcode_16.2.app
+        run: sudo xcode-select -s /Applications/Xcode_26.2.app
       - name: Install SwiftLint
         env:
           SWIFTLINT_VERSION: 0.57.0
@@ -67,7 +67,8 @@ jobs:
           cp $PP_PATH ~/Library/MobileDevice/Provisioning\ Profiles
       - name: Build and Analyse
         run: |
-          xcodebuild build analyze -scheme PagerCall -destination 'generic/platform=macOS' -allowProvisioningUpdates -configuration Debug | tee build.log
+          set -eo pipefail
+          xcodebuild build analyze -scheme PagerCall -destination 'generic/platform=macOS' -allowProvisioningUpdates -configuration Debug CODE_SIGNING_ALLOWED=NO | tee build.log
       - name: SwiftLint Analyse
         run: |
           ./swiftlint analyze --strict --compiler-log-path build.log
