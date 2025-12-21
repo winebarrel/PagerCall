@@ -10,6 +10,7 @@
 		AD85988E2CC36BAE008A2789 /* MenuBarExtraAccess in Frameworks */ = {isa = PBXBuildFile; productRef = AD85988D2CC36BAE008A2789 /* MenuBarExtraAccess */; };
 		AD8598912CC36BC1008A2789 /* Valet in Frameworks */ = {isa = PBXBuildFile; productRef = AD8598902CC36BC1008A2789 /* Valet */; };
 		AD89A2D52CCE9CF800F6BB1A /* AsyncAlgorithms in Frameworks */ = {isa = PBXBuildFile; productRef = AD89A2D42CCE9CF800F6BB1A /* AsyncAlgorithms */; };
+		ADE19B752EF80CAF00DF602D /* VersionCompare in Frameworks */ = {isa = PBXBuildFile; productRef = ADE19B742EF80CAF00DF602D /* VersionCompare */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 				AD85988E2CC36BAE008A2789 /* MenuBarExtraAccess in Frameworks */,
 				AD8598912CC36BC1008A2789 /* Valet in Frameworks */,
 				AD89A2D52CCE9CF800F6BB1A /* AsyncAlgorithms in Frameworks */,
+				ADE19B752EF80CAF00DF602D /* VersionCompare in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +80,7 @@
 				AD85988D2CC36BAE008A2789 /* MenuBarExtraAccess */,
 				AD8598902CC36BC1008A2789 /* Valet */,
 				AD89A2D42CCE9CF800F6BB1A /* AsyncAlgorithms */,
+				ADE19B742EF80CAF00DF602D /* VersionCompare */,
 			);
 			productName = PagerCall;
 			productReference = AD143A852CAAE0C900D0BEBA /* PagerCall.app */;
@@ -91,7 +94,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1600;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2620;
 				TargetAttributes = {
 					AD143A842CAAE0C900D0BEBA = {
 						CreatedOnToolsVersion = 16.0;
@@ -111,6 +114,7 @@
 				AD85988C2CC36BAE008A2789 /* XCRemoteSwiftPackageReference "MenuBarExtraAccess" */,
 				AD85988F2CC36BC1008A2789 /* XCRemoteSwiftPackageReference "Valet" */,
 				AD89A2D32CCE9CF800F6BB1A /* XCRemoteSwiftPackageReference "swift-async-algorithms" */,
+				ADE19B732EF80CAF00DF602D /* XCRemoteSwiftPackageReference "swift-version-compare" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = AD143A862CAAE0C900D0BEBA /* Products */;
@@ -225,6 +229,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -283,6 +288,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
@@ -298,9 +304,12 @@
 				CURRENT_PROJECT_VERSION = 1.6.0;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
@@ -328,9 +337,12 @@
 				CURRENT_PROJECT_VERSION = 1.6.0;
 				DEAD_CODE_STRIPPING = YES;
 				DEVELOPMENT_ASSET_PATHS = "";
+				ENABLE_APP_SANDBOX = YES;
 				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_OUTGOING_NETWORK_CONNECTIONS = YES;
 				ENABLE_PREVIEWS = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				ENABLE_USER_SELECTED_FILES = readonly;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
 				INFOPLIST_KEY_LSUIElement = YES;
@@ -395,6 +407,14 @@
 				minimumVersion = 1.0.2;
 			};
 		};
+		ADE19B732EF80CAF00DF602D /* XCRemoteSwiftPackageReference "swift-version-compare" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mflknr/swift-version-compare";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -412,6 +432,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AD89A2D32CCE9CF800F6BB1A /* XCRemoteSwiftPackageReference "swift-async-algorithms" */;
 			productName = AsyncAlgorithms;
+		};
+		ADE19B742EF80CAF00DF602D /* VersionCompare */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ADE19B732EF80CAF00DF602D /* XCRemoteSwiftPackageReference "swift-version-compare" */;
+			productName = VersionCompare;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
