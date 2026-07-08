@@ -6,6 +6,7 @@ struct SettingView: View {
     @Binding var apiKey: String
     @AppStorage("subdomain") private var subdomain = ""
     @AppStorage("userID") private var userID = ""
+    @AppStorage("region") private var region = Region.us
     @AppStorage("interval") private var interval = Constants.defaultInterval
     @AppStorage("sortBy") private var sortBy = ItemOrder.incidentMumberAsc
     @State private var launchAtLogin: Bool = SMAppService.mainApp.status == .enabled
@@ -21,6 +22,11 @@ struct SettingView: View {
             }
             TextField("Subdomain", text: $subdomain)
             TextField("User ID", text: $userID)
+            Picker("Region", selection: $region) {
+                ForEach(Region.allCases, id: \.self) { region in
+                    Text(region.rawValue).tag(region)
+                }
+            }.pickerStyle(.menu)
             TextField("Interval (sec)", value: $interval, format: .number.grouping(.never))
                 .onChange(of: interval) {
                     if interval < 1 {

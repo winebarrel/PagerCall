@@ -34,10 +34,13 @@ func - (left: Incidents, right: Incidents) -> Incidents {
 }
 
 struct PagerDutyAPI {
-    private let endpoint = URL(string: "https://api.pagerduty.com/")!
-
     @AppStorage("userID") private var userID: String = ""
     @AppStorage("sortBy") private var sortBy = ItemOrder.incidentMumberAsc
+    @AppStorage("region") private var region = Region.us
+
+    private var endpoint: URL {
+        region.apiEndpoint
+    }
 
     private struct OncallsResp: Codable {
         let oncalls: [Oncall]
