@@ -12,4 +12,13 @@ enum Region: String, CaseIterable {
             return URL(string: "https://api.eu.pagerduty.com/")!
         }
     }
+
+    func webBaseURL(subdomain: String) -> URL {
+        switch self {
+        case .us:
+            return URL(string: "https://\(subdomain).pagerduty.com")!
+        case .eu:
+            return URL(string: "https://\(subdomain).eu.pagerduty.com")!
+        }
+    }
 }
