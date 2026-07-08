@@ -33,7 +33,7 @@ https://github.com/winebarrel/PagerCall/releases/latest
 
 ![](https://github.com/user-attachments/assets/1ab70b5b-2de9-46f9-a3a3-c534f9cb6ff0)
 
-![](https://github.com/user-attachments/assets/44cf1972-7a58-407e-84db-4f4562b58e05)
+![](https://github.com/user-attachments/assets/f58d98a2-2170-4332-ae38-de4f3bc708c6)
 
 | Field | Value |
 | - | - |
