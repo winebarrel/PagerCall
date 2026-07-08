@@ -1,8 +1,10 @@
 import Foundation
 
 enum Region: String, CaseIterable {
+    // swiftlint:disable identifier_name
     case us = "US"
     case eu = "EU"
+    // swiftlint:enable identifier_name
 
     var apiEndpoint: URL {
         switch self {
