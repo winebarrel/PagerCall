@@ -9,14 +9,15 @@ struct RightClickMenuView: View {
         Button("My Incidents") {
             Task {
                 let base = region.webBaseURL(subdomain: subdomain)
-                let url = URL(string: "\(base.absoluteString)/incidents?assignedToUser=\(userID)")!
+                let url = base.appending(path: "incidents")
+                    .appending(queryItems: [URLQueryItem(name: "assignedToUser", value: userID)])
                 NSWorkspace.shared.open(url)
             }
         }
         Button("My On-Call Shifts") {
             Task {
                 let base = region.webBaseURL(subdomain: subdomain)
-                let url = URL(string: "\(base.absoluteString)/my-on-call/week")!
+                let url = base.appending(path: "my-on-call/week")
                 NSWorkspace.shared.open(url)
             }
         }
