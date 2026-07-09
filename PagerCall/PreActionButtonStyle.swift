@@ -4,10 +4,6 @@ import SwiftUI
 struct PreActionButtonStyle: PrimitiveButtonStyle {
     let preAction: () -> Void
 
-    init(preAction: @escaping () -> Void) {
-        self.preAction = preAction
-    }
-
     func makeBody(configuration: Configuration) -> some View {
         Button(role: configuration.role) {
             preAction()
@@ -20,10 +16,6 @@ struct PreActionButtonStyle: PrimitiveButtonStyle {
 
 struct PreActionButtonStyleModifier: ViewModifier {
     let preAction: () -> Void
-
-    init(preAction: @escaping () -> Void) {
-        self.preAction = preAction
-    }
 
     func body(content: Content) -> some View {
         content.buttonStyle(PreActionButtonStyle(preAction: preAction))
