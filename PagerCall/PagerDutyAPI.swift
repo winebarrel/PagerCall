@@ -77,7 +77,7 @@ struct PagerDutyAPI {
                 "statuses[]": ["triggered", "acknowledged"],
                 "limit": ["100"],
                 "offset": [String(offset)],
-                "sort_by": [sortBy.rawValue]
+                "sort_by": [sortBy.rawValue],
             ])
             let resp = try decoder.decode(IncidentsResp.self, from: data)
             incidents += resp.incidents
