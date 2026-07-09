@@ -21,6 +21,12 @@ struct SettingView: View {
                 Vault.apiKey = apiKey
             }
             TextField("Subdomain", text: $subdomain)
+                .onChange(of: subdomain) {
+                    let filtered = String(subdomain.unicodeScalars.filter { Constants.subdomainAllowedCharacters.contains($0) })
+                    if filtered != subdomain {
+                        subdomain = filtered
+                    }
+                }
             TextField("User ID", text: $userID)
             Picker("Region", selection: $region) {
                 ForEach(Region.allCases, id: \.self) { region in
