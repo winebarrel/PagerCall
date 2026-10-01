@@ -1,7 +1,7 @@
 import AppKit
 
-// NOTE: Since macOS 27, the menu bar is hosted by the system and mouse events are no longer
-// delivered to views added to the status item button, so clicks are handled via target/action.
+/// NOTE: Since macOS 27, the menu bar is hosted by the system and mouse events are no longer
+/// delivered to views added to the status item button, so clicks are handled via target/action.
 @MainActor
 class StatusItemClickHandler: NSObject {
     private let statusItem: NSStatusItem
