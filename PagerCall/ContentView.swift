@@ -65,11 +65,13 @@ struct ContentView: View {
                                 Text(incident.title)
                                     .multilineTextAlignment(.leading)
                                     .underline(hoverId == incident.id)
-                                    .onHover { hovering in
-                                        hoverId = hovering ? incident.id : ""
-                                    }
-                                    .effectHoverCursor()
                             }
+                            // NOTE: Since macOS 27, onHover inside a Link label is never called,
+                            // so handle hover on the Link itself.
+                            .onHover { hovering in
+                                hoverId = hovering ? incident.id : ""
+                            }
+                            .effectHoverCursor()
                             Text("(\(incident.createdAt.relative()))").font(.caption2)
                         }
 
