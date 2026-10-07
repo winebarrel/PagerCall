@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",
       "state" : {
-        "revision" : "98ef3c98609a1e31b7e157b5b619579001a789d6",
-        "version" : "1.7.1"
+        "revision" : "3b69cedbaa49957e97c092ae400bb57602ef941f",
+        "version" : "1.7.2"
       }
     },
     {
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/square/Valet.git",
       "state" : {
-        "revision" : "246baf6be3f9e3ff116dc05251a08f69dd7c7b9d",
-        "version" : "5.1.0"
+        "revision" : "43f517941ced37752c0cd5e2b53a3c9d021c848b",
+        "version" : "5.1.1"
       }
     }
   ],
